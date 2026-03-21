@@ -4,6 +4,7 @@ require('dotenv').config();
 
 const pool = require('./database');
 const productsRouter = require('./routes/products');
+const userRoutes = require('./routes/users');
 const app = express();
 
 // Middleware
@@ -12,6 +13,7 @@ app.use(cors());
 
 // Routes
 app.use('/api/products', productsRouter);
+app.use('/api/users', userRoutes);
 
 
 
