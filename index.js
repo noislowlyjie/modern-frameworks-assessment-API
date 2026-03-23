@@ -6,6 +6,8 @@ const pool = require('./database');
 const productsRouter = require('./routes/products');
 const userRoutes = require('./routes/users');
 const cartRoutes = require('./routes/cart');
+const checkoutRoutes = require('./routes/checkout');
+
 const app = express();
 
 // Middleware
@@ -16,6 +18,8 @@ app.use(cors());
 app.use('/api/products', productsRouter);
 app.use('/api/users', userRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/checkout', checkoutRoutes);
+
 
 
 
