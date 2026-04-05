@@ -8,4 +8,6 @@ INSERT INTO products (name, price, imageUrl, description) VALUES
 
 INSERT INTO marketing_preferences (id, preference) VALUES
 (1, 'Email Marketing'),
-(2, 'SMS Marketing');    
+(2, 'SMS Marketing'),
+(3, 'Newsletter'),
+(4, 'Product Updates');
