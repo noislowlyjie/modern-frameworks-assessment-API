@@ -172,6 +172,20 @@ async function deleteUser(id) {
   try {
     await connection.beginTransaction();
 
+    // Delete cart items
+    await connection.execute(`DELETE FROM cart_items WHERE user_id = ?`, [id]);
+
+    // Delete order items belonging to the user's orders
+    await connection.execute(
+      `DELETE order_items FROM order_items
+       INNER JOIN orders ON order_items.order_id = orders.id
+       WHERE orders.user_id = ?`,
+      [id]
+    );
+
+    // Delete orders
+    await connection.execute(`DELETE FROM orders WHERE user_id = ?`, [id]);
+
     // Delete marketing preferences
     await connection.execute(`DELETE FROM user_marketing_preferences WHERE user_id = ?`, [id]);
 

@@ -24,9 +24,13 @@ async function updateCart(userId, cartItems) {
 
     // Insert each item in the new cart
     for (const item of cartItems) {
+      const productId = item.product_id ?? item.productId;
+      if (!productId || !item.quantity) {
+        throw new Error('Each cart item must have a productId and quantity');
+      }
       await connection.execute(
         'INSERT INTO cart_items (user_id, product_id, quantity) VALUES (?, ?, ?)',
-        [userId, item.product_id, item.quantity]
+        [userId, productId, item.quantity]
       );
     }
 
